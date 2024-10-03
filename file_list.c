@@ -6,45 +6,45 @@ void file_validation_n_file_list(Flist **f_head, char *argv[])
 	while (argv[i] != NULL)
 	{
 		empty = isFileEmpty(argv[i]);
-
 		if (empty == FILE_NOTAVAILABLE)
 		{
 			printf("File : %s is not available\n", argv[i]);
-			printf("Hence we are not adding that file\n");
+			printf("Hence we are not adding this file into file linked list\n");
 			i++;
 			continue;
 		}
 		else if (empty == FILE_EMPTY)
 		{
-			printf("File : %s is not having any content \n", argv[i]);
-			printf("Hence we are not adding that file\n");
+			printf("File : %s is empty\n", argv[i]);
+			printf("Hence we are not adding this file into file linked list\n");
 			i++;
 			continue;
 		}
 		else
 		{
-			// add files to file LL
 			int ret_val = to_create_list_of_files(f_head, argv[i]);
-
 			if (ret_val == SUCCESS)
 			{
-				printf("Successfull : Inserting the file : %s into file LL\n", argv[i]);
+				printf("Successfull : inserting the file name %s into file linked list\n", argv[i]);
 			}
 			else if (ret_val == REPEATATION)
 			{
-				printf("\nThis file name : %s is repeated. Hence we are not adding that file\n\n", argv[i]);
+				printf("This file name : %s is repeated. Do not add into file linked list\n", argv[i]);
 			}
 			else
 			{
 				printf("Failure\n");
 			}
+
 			i++;
 			continue;
 		}
 	}
 }
 
-// fun is used to check file availability and also for file content check
+// fun() is used to check whether file is available or not
+//  it checks for file empty or not
+
 int isFileEmpty(char *filename)
 {
 	FILE *fptr = fopen(filename, "r");
@@ -65,9 +65,9 @@ int isFileEmpty(char *filename)
 
 int to_create_list_of_files(Flist **f_head, char *name)
 {
-	// check for duplicancy
-	// insert_last
-
+	//...........TODO.........
+	// check file name , duplicate or not
+	// create a file linked list
 	Flist *new = malloc(sizeof(Flist));
 	if (new == NULL)
 	{
@@ -85,7 +85,7 @@ int to_create_list_of_files(Flist **f_head, char *name)
 	else
 	{
 		Flist *temp = *f_head;
-		
+
 		while (temp->link != NULL)
 		{
 			if (strcmp(temp->file_name, name) == 0)
@@ -95,7 +95,7 @@ int to_create_list_of_files(Flist **f_head, char *name)
 			}
 			temp = temp->link;
 		}
-		
+
 		if (strcmp(temp->file_name, name) == 0)
 		{
 			free(new);

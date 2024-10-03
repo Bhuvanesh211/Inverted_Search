@@ -1,9 +1,3 @@
-/*
-Name : Pavithra C R
-Date : 04/06/2024
-Description : Inverted Indexing Project
-*/
-
 #include "inverted_search.h"
 
 int main(int argc, char *argv[])
@@ -15,7 +9,7 @@ int main(int argc, char *argv[])
     if (argc <= 1)
     {
         printf("Enter the valid number of arguments\n");
-        printf("./Slist.exe file1.txt file2.txt.......\n");
+        printf("./a.exe file1.txt file2.txt.......\n");
         return 0;
     }
 
@@ -45,7 +39,7 @@ int main(int argc, char *argv[])
         printf("Enter your choice: ");
 
         int choice;
-        scanf("%d",&choice);
+        scanf("%d", &choice);
 
         switch (choice)
         {

@@ -2,14 +2,12 @@
 
 int update_database(Wlist *head[], Flist **f_head)
 {
-    // prompt the user for new file to update the database
-
     char file_name[FNAME_SIZE];
-    printf("Enter the new file \n");
+    printf("Enter the file name to update the database : ");
     scanf("%s", file_name);
 
-    // validate the file
-
+    // validation
+    //......TODO......
     int empty = isFileEmpty(file_name);
 
     if (empty == FILE_NOTAVAILABLE)
@@ -31,7 +29,7 @@ int update_database(Wlist *head[], Flist **f_head)
 
         if (ret_val == SUCCESS)
         {
-            printf("\nSuccessfull : Inserting the file : %s into file LL\n", file_name);
+            printf("\nSuccessfull : Inserting the file : %s into file Linked list\n", file_name);
             *f_head = (*f_head)->link;
         }
         else if (ret_val == REPEATATION)

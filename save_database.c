@@ -2,15 +2,13 @@
 
 void save_database(Wlist *head[])
 {
-    // prompt the user for file
-
-    int i;
     char file_name[FNAME_SIZE];
-
-    printf("Enter the file name to save the database\n");
+    printf("Enter the file name\n");
     scanf("%s", file_name);
+    int i;
 
     // open file
+
     FILE *fptr = fopen(file_name, "w");
 
     for (i = 0; i < 27; i++)
@@ -20,13 +18,12 @@ void save_database(Wlist *head[])
             write_databasefile(head[i], fptr,i);
         }
     }
-
-    printf("\nDatabase saved\n\n");
 }
 
-void write_databasefile(Wlist *head, FILE *databasefile,int index)
+void write_databasefile(Wlist *head, FILE *databasefile, int index)
 {
-    // #[index]  [word] :  [file_count]   :   file_name   :  [word_count]
+    //.......TODO.........
+    // #[index]  word is [word] : file count is file_count : file/s  : file name is file_name : word count is word_count
 
     while (head)
     {

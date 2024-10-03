@@ -1,51 +1,56 @@
-#include "inverted_search.h"
-
+#include "inverted_search.h" 
 int insert_at_last(Wlist **head, data_t *data, char *filename)
 {
-
-    // create a node
+    //create a node 
     Wlist *new = malloc(sizeof(Wlist));
 
-    if (new == NULL)
+    //error check
+    if(new == NULL)
+    {
         return FAILURE;
-
-    // UPDATE
+    }
+    //update the fields
     new->file_count = 1;
-    strcpy(new->word, data);
+    strcpy(new->word ,data);
     new->Tlink = NULL;
     new->link = NULL;
 
-    // call fun to update link table node
+    //call fun() to create Ltable node
     update_link_table(&new, filename);
 
-    // check Wlist is empty or not
-    if (*head == NULL)
+    //check Wlist is empty or not
+    if(*head == NULL)
     {
         *head = new;
         return SUCCESS;
     }
 
-    // non - empty , traverse through the list
-    Wlist *temp = *head;
+    //list is not empty
 
-    while (temp->link)
+    Wlist *temp = *head;
+    //traverse through Wlist
+
+    while(temp->link)
     {
         temp = temp->link;
     }
+
     temp->link = new;
     return SUCCESS;
+
 }
 
 int update_link_table(Wlist **head, char *filename)
 {
-    // create a node
-
+    //create a node
     Ltable *new = malloc(sizeof(Ltable));
 
-    if (new == NULL)
+    //error check
+    if(new == NULL)
+    {
         return FAILURE;
+    }
 
-    // update
     new->word_count = 1;
     strcpy(new->file_name, filename);
     new->table_link = NULL;

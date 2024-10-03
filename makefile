@@ -1,6 +1,9 @@
-var:= $(patsubst %.c, %.o, $(wildcard *.c))
-cal.exe: $(var)
-		gcc -o $@ $^
+OBJ:=$(patsubst %.c,%.o,$(wildcard *.c))
+
+cal.exe: $(OBJ)
+	gcc -o $@ $^
+
 clean:
-		rm *.o *.exe
+	rm *.o *.exe
+
 
