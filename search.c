@@ -14,7 +14,7 @@ int search_database( Wlist *head, char *word)
         //compare each node word with the search word
         if(!strcmp(head->word , word))
         {
-            printf("Word %s is present in %d file/s \n", word , head->file_count);
+            printf("Word '%s' is present in %d file/s \n", word , head->file_count);
 
             Ltable *Thead = head->Tlink;
             while(Thead)

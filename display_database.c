@@ -5,7 +5,7 @@
 void display_database(Wlist *head[])
 {
     printf("-----------------------------------------------------------------------\n");
-    printf("[index]  [word]    file_count  file/s File:File_name    word_count\n");
+    printf("[index]  [word]    file_count file/s  File:File_name    word_count\n");
     printf("-----------------------------------------------------------------------\n");
 
     for (int i = 0; i < 27; i++)
@@ -15,7 +15,7 @@ void display_database(Wlist *head[])
             print_word_count(head[i]);
         }
     }
-    printf("-------------------------------------------------------------------------");
+    printf("------------------------------------------------------------------------");
 }
 
 int print_word_count(Wlist *head)
@@ -28,13 +28,13 @@ int print_word_count(Wlist *head)
         if (!(index >= 0 && index <= 25))
             index = 26;
 
-        printf(" [%2d]     %-10s   %d        file/s : ", index, head->word, head->file_count);
+        printf(" [%2d]     %-10s   %d    file/s : ", index, head->word, head->file_count);
 
         Ltable *Thead = head->Tlink;
 
         while (Thead)
         {
-            printf("%-10s \t   %d  ", Thead->file_name, Thead->word_count);
+            printf("\t%-10s \t   %d  ", Thead->file_name, Thead->word_count);
             Thead = Thead->table_link;
         }
 
