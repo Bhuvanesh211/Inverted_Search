@@ -71,7 +71,9 @@ void save_database( Wlist *head[]);
 void write_databasefile(Wlist *head, FILE* databasefile, int index);
 //update 
 int update_database( Wlist *head[], Flist **f_head);
+
 int isFileEmpty(char *filename);
+
 void file_validation_n_file_list(Flist **f_head, char *argv[]);
 
 #endif

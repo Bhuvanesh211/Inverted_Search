@@ -62,35 +62,45 @@ Wlist *read_datafile(Flist *file, Wlist *head[], char *filename)
 
 int update_word_count(Wlist **head, char *file_name)
 {
-    // Check whether the filenames are the same or not
-    // If filenames are the same, increment word_count
-    // If filenames are different, increment file_count, create new Ltable node
-
-    if (!strcmp(file_name, (*head)->Tlink->file_name))
+    // Check if the word node is NULL
+    if (*head == NULL)
     {
-        (*head)->Tlink->word_count += 1;
+        return FAILURE;
     }
-    else
-    {
-        (*head)->file_count += 1;
 
-        Ltable *new = malloc(sizeof(Ltable));
-        if (new == NULL)
+    // Traverse the link table to find if the file name exists
+    Ltable *temp = (*head)->Tlink;
+
+    while (temp != NULL)
+    {
+        // If the file names match, increment the word count
+        if (strcmp(temp->file_name, file_name) == 0)
         {
-            return FAILURE;
+            temp->word_count++; // Increment word count for this file
+            return SUCCESS;
         }
 
-        strcpy(new->file_name, file_name);
-        new->word_count = 1;
-        new->table_link = NULL;
-
-        Ltable *current = (*head)->Tlink;
-
-        while (current->table_link != NULL)
-        {
-            current = current->table_link;
-        }
-        current->table_link = new;
+        temp = temp->table_link; // Move to the next file node
     }
+
+    // If the file name doesn't match any existing file, create a new link table node for the new file
+    Ltable *new_node = (Ltable *)malloc(sizeof(Ltable));
+    if (new_node == NULL)
+    {
+        perror("Failed to allocate memory");
+        return FAILURE;
+    }
+
+    // Initialize the new link table node
+    strcpy(new_node->file_name, file_name);
+    new_node->word_count = 1; // Word occurs once in this new file
+    new_node->table_link = (*head)->Tlink;
+
+    // Update the word node's link to point to the new node
+    (*head)->Tlink = new_node;
+
+    // Increment the file count for the word node
+    (*head)->file_count++;
+
     return SUCCESS;
 }

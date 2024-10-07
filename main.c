@@ -29,10 +29,10 @@ int main(int argc, char *argv[])
     int y = 1;
     while (y)
     {
-        printf("Select your choice among the following options:\n");
-        printf("1. Create DATABASE\n");
+        printf("\nSelect your choice among the following options:\n");
+        printf("1. Create Database\n");
         printf("2. Display Database\n");
-        printf("3. Update DATABASE\n");
+        printf("3. Update Database\n");
         printf("4. Search\n");
         printf("5. Save Database\n");
         printf("6. Exit\n");

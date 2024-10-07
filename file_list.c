@@ -25,7 +25,8 @@ void file_validation_n_file_list(Flist **f_head, char *argv[])
 			int ret_val = to_create_list_of_files(f_head, argv[i]);
 			if (ret_val == SUCCESS)
 			{
-				printf("Successfull : inserting the file name %s into file linked list\n", argv[i]);
+				printf("\nSuccessfull : inserting the file name %s into file linked list\n", argv[i]);
+				
 			}
 			else if (ret_val == REPEATATION)
 			{

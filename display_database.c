@@ -1,5 +1,3 @@
-#include <ctype.h>
-#include <stdio.h>
 #include "inverted_search.h"
 
 void display_database(Wlist *head[])
@@ -15,32 +13,26 @@ void display_database(Wlist *head[])
             print_word_count(head[i]);
         }
     }
-    printf("------------------------------------------------------------------------");
+    printf("-----------------------------------------------------------------------");
 }
 
 int print_word_count(Wlist *head)
 {
     while (head != NULL)
     {
-        int index = tolower(head->word[0]) - 'a';
-
-        // Handle non-alphabetic characters
-        if (!(index >= 0 && index <= 25))
-            index = 26;
-
+        int index = tolower(head->word[0]) % 97;
         printf(" [%2d]     %-10s   %d    file/s : ", index, head->word, head->file_count);
 
         Ltable *Thead = head->Tlink;
 
-        while (Thead)
+        // Print only the first file name and its word count
+        if (Thead)
         {
             printf("\t%-10s \t   %d  ", Thead->file_name, Thead->word_count);
-            Thead = Thead->table_link;
         }
 
         printf("\n");
         head = head->link;
-        
     }
     return 0;
 }
